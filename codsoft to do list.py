@@ -41,8 +41,8 @@ class TodoApp(tk.Tk):
         self.geometry("400x400")
 
         # Configure colors
-        self.configure(bg="#ffe4e1")  # Background color: Dark Blue
-        self.label_color = "#FFFFFF"  # Text color: White
+        self.configure(bg="#ffe4e1")  # Background color: Light Pink
+        self.label_color = "#000000"  # Text color: Black
         self.button_color = "#008000" # Button color: Green
         self.entry_text_color = "#000000" # Text color for entry widget: Black
 
@@ -61,7 +61,7 @@ class TodoApp(tk.Tk):
         self.subheading_label.pack(pady=(10, 5))
         
         # Listbox to display tasks
-        self.task_list = tk.Listbox(self, selectmode=tk.SINGLE, bg="#FFFFFF", fg=self.label_color)
+        self.task_list = tk.Listbox(self, selectmode=tk.SINGLE, bg="#FFFFFF")
         self.task_list.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
 
         # Frame for action buttons
@@ -82,6 +82,7 @@ class TodoApp(tk.Tk):
         self.task_list.delete(0, tk.END)
         for i, task in enumerate(self.task_manager.tasks):
             self.task_list.insert(tk.END, f"{i + 1}. {task['description']}")
+            self.task_list.itemconfig(i, {'fg': self.label_color})
 
     def add_task(self):
         task_description = self.task_entry.get()
